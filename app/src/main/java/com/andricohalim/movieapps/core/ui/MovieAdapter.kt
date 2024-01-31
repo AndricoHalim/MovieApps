@@ -34,10 +34,11 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ListViewHolder>() {
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = MovieItemBinding.bind(itemView)
+        private val IMAGE_URL = "https://image.tmdb.org/t/p/original/"
         fun bind(data: Movie) {
             with(binding) {
                 Glide.with(itemView.context)
-                    .load(data.posterPath)
+                    .load(IMAGE_URL + data.posterPath)
                     .into(ivMovie)
                 tvMovieName.text = data.title
             }
