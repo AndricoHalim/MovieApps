@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +12,7 @@ import com.andricohalim.movieapps.core.data.Resource
 import com.andricohalim.movieapps.core.ui.MovieAdapter
 import com.andricohalim.movieapps.core.ui.ViewModelFactory
 import com.andricohalim.movieapps.databinding.FragmentHomeBinding
+import com.andricohalim.movieapps.detail.DetailMovieActivity
 
 class HomeFragment : Fragment() {
 
@@ -36,12 +36,15 @@ class HomeFragment : Fragment() {
 
             val tourismAdapter = MovieAdapter()
             tourismAdapter.onItemClick = { selectedData ->
+                val detailIntent = Intent(activity, DetailMovieActivity::class.java)
+                detailIntent.putExtra(DetailMovieActivity.KEY_DETAIL, selectedData)
+                startActivity(detailIntent)
             }
 
             val factory = ViewModelFactory.getInstance(requireActivity())
             homeViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
 
-            homeViewModel.tourism.observe(viewLifecycleOwner, { tourism ->
+            homeViewModel.tourism.observe(viewLifecycleOwner) { tourism ->
                 if (tourism != null) {
                     when (tourism) {
                         is Resource.Loading -> binding.progressBar.visibility = View.VISIBLE
@@ -49,12 +52,13 @@ class HomeFragment : Fragment() {
                             binding.progressBar.visibility = View.GONE
                             tourismAdapter.setData(tourism.data)
                         }
+
                         is Resource.Error -> {
                             binding.progressBar.visibility = View.GONE
                         }
                     }
                 }
-            })
+            }
 
             with(binding.rvMovie) {
                 layoutManager = LinearLayoutManager(context)

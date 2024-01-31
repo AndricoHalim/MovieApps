@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.andricohalim.movieapps.core.di.Injection
 import com.andricohalim.movieapps.core.domain.usecase.MovieUseCase
+import com.andricohalim.movieapps.detail.DetailMovieViewModel
 import com.andricohalim.movieapps.ui.home.HomeViewModel
 
 class ViewModelFactory private constructor(private val movieUseCase: MovieUseCase) :
@@ -27,6 +28,9 @@ class ViewModelFactory private constructor(private val movieUseCase: MovieUseCas
         when {
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
                 HomeViewModel(movieUseCase) as T
+            }
+            modelClass.isAssignableFrom(DetailMovieViewModel::class.java) -> {
+                DetailMovieViewModel(movieUseCase) as T
             }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }

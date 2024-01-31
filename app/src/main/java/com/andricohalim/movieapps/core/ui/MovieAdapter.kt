@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.andricohalim.movieapps.BuildConfig.IMAGE_URL
 import com.andricohalim.movieapps.R
 import com.andricohalim.movieapps.core.domain.model.Movie
 import com.andricohalim.movieapps.databinding.MovieItemBinding
@@ -34,7 +35,6 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ListViewHolder>() {
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = MovieItemBinding.bind(itemView)
-        private val IMAGE_URL = "https://image.tmdb.org/t/p/original/"
         fun bind(data: Movie) {
             with(binding) {
                 Glide.with(itemView.context)

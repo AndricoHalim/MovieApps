@@ -5,6 +5,6 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface ApiService {
-    @GET("3/discover/movie")
+    @GET("3/movie/now_playing")
     fun getMovies(): Call<ListMovieResponse>
 }

@@ -17,6 +17,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "API_KEY", "\"eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiYmRiYjhlM2E0NzY0NmYxZTY2MjI4MWZiYjZkMjE1ZSIsInN1YiI6IjY1Yjc2M2QyMTA4OWJhMDE2NGY4OGEzOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9Bq_0E0WDZ137CQieR86xhQE3flVjbGBkwX_dzpHN60\"")
+        buildConfigField("String", "IMAGE_URL", "\"https://image.tmdb.org/t/p/original/\"")
     }
 
     buildTypes {
@@ -37,6 +40,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
