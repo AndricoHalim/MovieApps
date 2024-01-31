@@ -13,14 +13,8 @@ data class MovieResponse(
 	@field:SerializedName("original_title")
 	val originalTitle: String,
 
-	@field:SerializedName("video")
-	val video: Boolean,
-
 	@field:SerializedName("title")
 	val title: String,
-
-	@field:SerializedName("genre_ids")
-	val genreIds: List<Int>,
 
 	@field:SerializedName("poster_path")
 	val posterPath: String,
@@ -32,17 +26,9 @@ data class MovieResponse(
 	val releaseDate: String,
 
 	@field:SerializedName("popularity")
-	val popularity: Any,
-
-	@field:SerializedName("vote_average")
-	val voteAverage: Int,
+	val popularity: String,
 
 	@field:SerializedName("id")
 	val id: Int,
 
-	@field:SerializedName("adult")
-	val adult: Boolean,
-
-	@field:SerializedName("vote_count")
-	val voteCount: Int
 )
