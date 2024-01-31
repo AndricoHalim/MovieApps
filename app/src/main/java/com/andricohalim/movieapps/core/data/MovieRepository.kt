@@ -34,7 +34,7 @@ class MovieRepository private constructor(
     override fun getAllMovie(): LiveData<Resource<List<Movie>>> =
         object : NetworkBoundResource<List<Movie>, List<MovieResponse>>(appExecutors) {
             override fun loadFromDB(): LiveData<List<Movie>> {
-                return localDataSource.getAllTourism().map {
+                return localDataSource.getAllMovie().map {
                     DataMapper.mapEntitiesToDomain(it)
                 }
             }
@@ -44,22 +44,22 @@ class MovieRepository private constructor(
                 true // ganti dengan true jika ingin selalu mengambil data dari internet
 
             override fun createCall(): LiveData<ApiResponse<List<MovieResponse>>> =
-                remoteDataSource.getAllTourism()
+                remoteDataSource.getAllMovie()
 
             override fun saveCallResult(data: List<MovieResponse>) {
-                val tourismList = DataMapper.mapResponsesToEntities(data)
-                localDataSource.insertTourism(tourismList)
+                val movieList = DataMapper.mapResponsesToEntities(data)
+                localDataSource.insertMovie(movieList)
             }
         }.asLiveData()
 
     override fun getFavoriteMovie(): LiveData<List<Movie>> {
-        return localDataSource.getFavoriteTourism().map {
+        return localDataSource.getFavoriteMovie().map {
             DataMapper.mapEntitiesToDomain(it)
         }
     }
 
     override fun setFavoriteMovie(movie: Movie, state: Boolean) {
-        val tourismEntity = DataMapper.mapDomainToEntity(movie)
-        appExecutors.diskIO().execute { localDataSource.setFavoriteTourism(tourismEntity, state) }
+        val movieEntity = DataMapper.mapDomainToEntity(movie)
+        appExecutors.diskIO().execute { localDataSource.setFavoriteMovie(movieEntity, state) }
     }
 }

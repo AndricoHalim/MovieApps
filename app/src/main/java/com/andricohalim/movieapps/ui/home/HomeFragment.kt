@@ -34,8 +34,8 @@ class HomeFragment : Fragment() {
 
         if (activity != null) {
 
-            val tourismAdapter = MovieAdapter()
-            tourismAdapter.onItemClick = { selectedData ->
+            val movieAdapter = MovieAdapter()
+            movieAdapter.onItemClick = { selectedData ->
                 val detailIntent = Intent(activity, DetailMovieActivity::class.java)
                 detailIntent.putExtra(DetailMovieActivity.KEY_DETAIL, selectedData)
                 startActivity(detailIntent)
@@ -44,13 +44,13 @@ class HomeFragment : Fragment() {
             val factory = ViewModelFactory.getInstance(requireActivity())
             homeViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
 
-            homeViewModel.tourism.observe(viewLifecycleOwner) { tourism ->
-                if (tourism != null) {
-                    when (tourism) {
+            homeViewModel.movie.observe(viewLifecycleOwner) { movie ->
+                if (movie != null) {
+                    when (movie) {
                         is Resource.Loading -> binding.progressBar.visibility = View.VISIBLE
                         is Resource.Success -> {
                             binding.progressBar.visibility = View.GONE
-                            tourismAdapter.setData(tourism.data)
+                            movieAdapter.setData(movie.data)
                         }
 
                         is Resource.Error -> {
@@ -63,7 +63,7 @@ class HomeFragment : Fragment() {
             with(binding.rvMovie) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
-                adapter = tourismAdapter
+                adapter = movieAdapter
             }
         }
     }

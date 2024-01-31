@@ -19,8 +19,8 @@ interface MovieDao {
     fun getFavoriteMovie(): LiveData<List<MovieEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertMovie(tourism: List<MovieEntity>)
+    fun insertMovie(movie: List<MovieEntity>)
 
     @Update
-    fun updateFavoriteMovie(tourism: MovieEntity)
+    fun updateFavoriteMovie(movie: MovieEntity)
 }

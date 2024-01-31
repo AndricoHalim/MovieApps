@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 
 class DetailMovieActivity : AppCompatActivity() {
 
-    private lateinit var detailTourismViewModel: DetailMovieViewModel
+    private lateinit var detailViewModel: DetailMovieViewModel
     private lateinit var binding: ActivityDetailMovieBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,22 +20,22 @@ class DetailMovieActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val factory = ViewModelFactory.getInstance(this)
-        detailTourismViewModel = ViewModelProvider(this, factory)[DetailMovieViewModel::class.java]
+        detailViewModel = ViewModelProvider(this, factory)[DetailMovieViewModel::class.java]
 
-        val detailTourism = intent.getParcelableExtra<Movie>(KEY_DETAIL)
-        showDetailTourism(detailTourism)
+        val detailMovie = intent.getParcelableExtra<Movie>(KEY_DETAIL)
+        showDetailMovie(detailMovie)
     }
 
-    private fun showDetailTourism(detailTourism: Movie?) {
-        detailTourism?.let {
-            supportActionBar?.title = detailTourism.title
+    private fun showDetailMovie(detailMovie: Movie?) {
+        detailMovie?.let {
+            supportActionBar?.title = detailMovie.title
             Glide.with(this@DetailMovieActivity)
-                .load(IMAGE_URL + detailTourism.backdropPath)
+                .load(IMAGE_URL + detailMovie.backdropPath)
                 .into(binding.ivBackgroundMove)
             Glide.with(this@DetailMovieActivity)
-                .load(IMAGE_URL + detailTourism.posterPath)
+                .load(IMAGE_URL + detailMovie.posterPath)
                 .into(binding.ivMovie)
-            binding.tvMovieName.text = detailTourism.title
+            binding.tvMovieName.text = detailMovie.title
 
 //            var statusFavorite = detailTourism.isFavorite
 //            setStatusFavorite(statusFavorite)

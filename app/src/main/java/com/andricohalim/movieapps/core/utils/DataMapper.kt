@@ -6,9 +6,9 @@ import com.andricohalim.movieapps.core.domain.model.Movie
 
 object DataMapper {
     fun mapResponsesToEntities(input: List<MovieResponse>): List<MovieEntity> {
-        val tourismList = ArrayList<MovieEntity>()
+        val movieList = ArrayList<MovieEntity>()
         input.map {
-            val tourism = MovieEntity(
+            val movie = MovieEntity(
                 overview = it.overview,
                 originalLanguage = it.originalLanguage,
                 originalTitle = it.originalTitle,
@@ -20,9 +20,9 @@ object DataMapper {
                 id = it.id,
                 isFavorite = false
             )
-            tourismList.add(tourism)
+            movieList.add(movie)
         }
-        return tourismList
+        return movieList
     }
 
     fun mapEntitiesToDomain(input: List<MovieEntity>): List<Movie> =

@@ -20,7 +20,7 @@ abstract class MovieDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     MovieDatabase::class.java,
-                    "Tourism.db"
+                    "Movie.db"
                 )
                     .fallbackToDestructiveMigration()
                     .build()
