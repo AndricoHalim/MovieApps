@@ -22,7 +22,7 @@ object Injection {
         return MovieRepository.getInstance(remoteDataSource, localDataSource, appExecutors)
     }
 
-    fun provideTourismUseCase(context: Context): MovieUseCase {
+    fun provideMovieUseCase(context: Context): MovieUseCase {
         val repository = provideRepository(context)
         return MovieInteractor(repository)
     }
