@@ -2,8 +2,10 @@ package com.andricohalim.movieapps.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.andricohalim.movieapps.BuildConfig.IMAGE_URL
+import com.andricohalim.movieapps.R
 import com.andricohalim.movieapps.core.domain.model.Movie
 import com.andricohalim.movieapps.core.ui.ViewModelFactory
 import com.andricohalim.movieapps.databinding.ActivityDetailMovieBinding
@@ -36,24 +38,26 @@ class DetailMovieActivity : AppCompatActivity() {
                 .load(IMAGE_URL + detailMovie.posterPath)
                 .into(binding.ivMovie)
             binding.tvMovieName.text = detailMovie.title
+            binding.tvMovieRelease.text= detailMovie.releaseDate
+            binding.tvMovieOverview.text = detailMovie.overview
 
-//            var statusFavorite = detailTourism.isFavorite
-//            setStatusFavorite(statusFavorite)
-//            binding.fab.setOnClickListener {
-//                statusFavorite = !statusFavorite
-//                detailTourismViewModel.setFavoriteTourism(detailTourism, statusFavorite)
-//                setStatusFavorite(statusFavorite)
-//            }
+            var statusFavorite = detailMovie.isFavorite
+            setStatusFavorite(statusFavorite)
+            binding.btnFavorite.setOnClickListener {
+                statusFavorite = !statusFavorite
+                detailViewModel.setFavoriteMovie(detailMovie, statusFavorite)
+                setStatusFavorite(statusFavorite)
+            }
         }
     }
 
-//    private fun setStatusFavorite(statusFavorite: Boolean) {
-//        if (statusFavorite) {
-//            binding.fab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favorite_white))
-//        } else {
-//            binding.fab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_not_favorite_white))
-//        }
-//    }
+    private fun setStatusFavorite(statusFavorite: Boolean) {
+        if (statusFavorite) {
+            binding.btnFavorite.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_bookmark_added_24))
+        } else {
+            binding.btnFavorite.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_bookmark_add_24))
+        }
+    }
 
     companion object {
         const val KEY_DETAIL = "key_detail"
