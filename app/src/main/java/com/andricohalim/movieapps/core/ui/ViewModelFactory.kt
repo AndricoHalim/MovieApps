@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.andricohalim.movieapps.core.di.Injection
 import com.andricohalim.movieapps.core.domain.usecase.MovieUseCase
 import com.andricohalim.movieapps.detail.DetailMovieViewModel
-import com.andricohalim.movieapps.ui.favorite.FavoriteViewModel
-import com.andricohalim.movieapps.ui.home.HomeViewModel
+import com.andricohalim.movieapps.favorite.FavoriteViewModel
+import com.andricohalim.movieapps.home.HomeViewModel
 
 class ViewModelFactory private constructor(private val movieUseCase: MovieUseCase) :
     ViewModelProvider.NewInstanceFactory() {

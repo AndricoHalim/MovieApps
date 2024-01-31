@@ -1,4 +1,4 @@
-package com.andricohalim.movieapps.ui.favorite
+package com.andricohalim.movieapps.favorite
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

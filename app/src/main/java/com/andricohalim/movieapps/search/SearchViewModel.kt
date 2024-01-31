@@ -1,4 +1,4 @@
-package com.andricohalim.movieapps.ui.search
+package com.andricohalim.movieapps.search
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

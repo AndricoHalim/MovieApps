@@ -1,4 +1,4 @@
-package com.andricohalim.movieapps.ui.home
+package com.andricohalim.movieapps.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
