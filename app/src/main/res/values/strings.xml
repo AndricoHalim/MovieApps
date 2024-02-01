@@ -5,4 +5,14 @@
     <string name="title_favorite">Favorite</string>
     <string name="no_data_detected">No Data Detected</string>
     <string name="something_wrong">Oops.. something went wrong</string>
+    <string name="movie_image">Movie Image</string>
+    <string name="movie_name">Movie Name</string>
+    <string name="overview">overview</string>
+    <string name="tvoverview">Overview :</string>
+    <string name="date">Date</string>
+    <string name="release_date">Release Date :</string>
+    <string name="movie_title">Movie Title</string>
+    <string name="movie_background">Movie Background</string>
+    <string name="movie_imageposter">Movie Image</string>
+    <string name="favorite_button">Favorite Button</string>
 </resources>

@@ -10,7 +10,7 @@
         android:id="@+id/iv_movie"
         android:layout_width="150dp"
         android:layout_height="200dp"
-        android:contentDescription="Movie Image"
+        android:contentDescription="@string/movie_imageposter"
         android:scaleType="centerCrop"
         android:layout_marginTop="150dp"
         android:layout_marginStart="16dp"
@@ -27,7 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="Movie Background" />
+        android:contentDescription="@string/movie_background" />
 
     <TextView
         android:id="@+id/tv_movieName"
@@ -37,7 +37,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:maxLines="4"
-        android:text="Movie Title"
+        android:text="@string/movie_title"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -49,7 +49,7 @@
         android:id="@+id/tv_release"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Release Date :"
+        android:text="@string/release_date"
         android:textSize="15sp"
         android:textStyle="bold"
         android:layout_marginTop="8dp"
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
-        android:text="Date"
+        android:text="@string/date"
         android:textColor="@color/black"
         app:layout_constraintEnd_toStartOf="@+id/btn_favorite"
         app:layout_constraintStart_toEndOf="@+id/iv_movie"
@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Overview :"
+        android:text="@string/tvoverview"
         android:textStyle="bold"
         android:textSize="16sp"
         android:textColor="@color/black"
@@ -91,7 +91,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:maxLines="10"
-        android:text="overview"
+        android:text="@string/overview"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -105,6 +105,7 @@
         android:layout_marginTop="8dp"
         android:src="@drawable/ic_bookmark_add_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_backgroundMove" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_backgroundMove"
+        android:contentDescription="@string/favorite_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
