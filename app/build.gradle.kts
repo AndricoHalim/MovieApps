@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("kotlin-parcelize")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -68,4 +69,18 @@ dependencies {
 
     //glide
     implementation ("com.github.bumptech.glide:glide:4.16.0")
+
+    //coroutine
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+    //dagger
+//    implementation ("com.google.dagger:dagger:2.50")
+//    kapt ("com.google.dagger:dagger-compiler:2.50")
+    implementation("com.google.dagger:hilt-android:2.50")
+    kapt("com.google.dagger:hilt-android-compiler:2.50")
+
+    //by viewModels di Activity dan Fragment
+    implementation ("androidx.activity:activity-ktx:1.8.2")
+    implementation ("androidx.fragment:fragment-ktx:1.6.2")
 }

@@ -4,4 +4,5 @@
     <string name="title_search">Search</string>
     <string name="title_favorite">Favorite</string>
     <string name="no_data_detected">No Data Detected</string>
+    <string name="something_wrong">Oops.. something went wrong</string>
 </resources>

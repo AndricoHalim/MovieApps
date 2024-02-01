@@ -1,5 +1,6 @@
 package com.andricohalim.movieapps.favorite
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,16 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andricohalim.movieapps.core.ui.MovieAdapter
-import com.andricohalim.movieapps.core.ui.ViewModelFactory
 import com.andricohalim.movieapps.databinding.FragmentFavoriteBinding
 import com.andricohalim.movieapps.detail.DetailMovieActivity
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class FavoriteFragment : Fragment() {
 
-    private lateinit var favoriteViewModel: FavoriteViewModel
+    private val favoriteViewModel: FavoriteViewModel by viewModels()
     private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
 
@@ -40,9 +43,6 @@ class FavoriteFragment : Fragment() {
                 intent.putExtra(DetailMovieActivity.KEY_DETAIL, selectedData)
                 startActivity(intent)
             }
-
-            val factory = ViewModelFactory.getInstance(requireActivity())
-            favoriteViewModel = ViewModelProvider(this, factory)[FavoriteViewModel::class.java]
 
             favoriteViewModel.favoriteMovie.observe(viewLifecycleOwner) { dataMovie ->
                 movieAdapter.setData(dataMovie)

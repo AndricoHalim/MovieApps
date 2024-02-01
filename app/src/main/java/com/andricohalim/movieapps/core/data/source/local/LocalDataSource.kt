@@ -4,23 +4,18 @@ import android.graphics.Movie
 import androidx.lifecycle.LiveData
 import com.andricohalim.movieapps.core.data.source.local.entity.MovieEntity
 import com.andricohalim.movieapps.core.data.source.local.room.MovieDao
+import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class LocalDataSource private constructor(private val movieDao: MovieDao) {
+@Singleton
+class LocalDataSource @Inject constructor(private val movieDao: MovieDao) {
 
-    companion object {
-        private var instance: LocalDataSource? = null
+    fun getAllMovie(): Flow<List<MovieEntity>> = movieDao.getAllMovie()
 
-        fun getInstance(movieDao: MovieDao): LocalDataSource =
-            instance ?: synchronized(this) {
-                instance ?: LocalDataSource(movieDao)
-            }
-    }
+    fun getFavoriteMovie(): Flow<List<MovieEntity>> = movieDao.getFavoriteMovie()
 
-    fun getAllMovie(): LiveData<List<MovieEntity>> = movieDao.getAllMovie()
-
-    fun getFavoriteMovie(): LiveData<List<MovieEntity>> = movieDao.getFavoriteMovie()
-
-    fun insertMovie(movieList: List<MovieEntity>) = movieDao.insertMovie(movieList)
+    suspend fun insertMovie(movieList: List<MovieEntity>) = movieDao.insertMovie(movieList)
 
     fun setFavoriteMovie(movie: MovieEntity, newState: Boolean) {
         movie.isFavorite = newState

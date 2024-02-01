@@ -10,49 +10,40 @@ import com.andricohalim.movieapps.core.domain.model.Movie
 import com.andricohalim.movieapps.core.domain.repository.IMovieRepository
 import com.andricohalim.movieapps.core.utils.AppExecutors
 import com.andricohalim.movieapps.core.utils.DataMapper
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class MovieRepository private constructor(
+@Singleton
+class MovieRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
     private val appExecutors: AppExecutors
 ) : IMovieRepository {
 
-    companion object {
-        @Volatile
-        private var instance: MovieRepository? = null
-
-        fun getInstance(
-            remoteData: RemoteDataSource,
-            localData: LocalDataSource,
-            appExecutors: AppExecutors
-        ): MovieRepository =
-            instance ?: synchronized(this) {
-                instance ?: MovieRepository(remoteData, localData, appExecutors)
-            }
-    }
-
-    override fun getAllMovie(): LiveData<Resource<List<Movie>>> =
-        object : NetworkBoundResource<List<Movie>, List<MovieResponse>>(appExecutors) {
-            override fun loadFromDB(): LiveData<List<Movie>> {
+    override fun getAllMovie(): Flow<Resource<List<Movie>>> =
+        object : NetworkBoundResource<List<Movie>, List<MovieResponse>>() {
+            override fun loadFromDB(): Flow<List<Movie>> {
                 return localDataSource.getAllMovie().map {
                     DataMapper.mapEntitiesToDomain(it)
                 }
             }
 
             override fun shouldFetch(data: List<Movie>?): Boolean =
-//                data == null || data.isEmpty()
-                true // ganti dengan true jika ingin selalu mengambil data dari internet
+                data.isNullOrEmpty()
+//                true // ganti dengan true jika ingin selalu mengambil data dari internet
 
-            override fun createCall(): LiveData<ApiResponse<List<MovieResponse>>> =
+            override suspend fun createCall(): Flow<ApiResponse<List<MovieResponse>>> =
                 remoteDataSource.getAllMovie()
 
-            override fun saveCallResult(data: List<MovieResponse>) {
+            override suspend fun saveCallResult(data: List<MovieResponse>) {
                 val movieList = DataMapper.mapResponsesToEntities(data)
                 localDataSource.insertMovie(movieList)
             }
-        }.asLiveData()
+        }.asFlow()
 
-    override fun getFavoriteMovie(): LiveData<List<Movie>> {
+    override fun getFavoriteMovie(): Flow<List<Movie>> {
         return localDataSource.getFavoriteMovie().map {
             DataMapper.mapEntitiesToDomain(it)
         }

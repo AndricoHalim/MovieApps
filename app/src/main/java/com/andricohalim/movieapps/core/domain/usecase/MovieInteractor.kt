@@ -2,8 +2,9 @@ package com.andricohalim.movieapps.core.domain.usecase
 
 import com.andricohalim.movieapps.core.domain.model.Movie
 import com.andricohalim.movieapps.core.domain.repository.IMovieRepository
+import javax.inject.Inject
 
-class MovieInteractor(private val movieRepository: IMovieRepository): MovieUseCase {
+class MovieInteractor @Inject constructor(private val movieRepository: IMovieRepository): MovieUseCase {
 
     override fun getAllMovie() = movieRepository.getAllMovie()
 
