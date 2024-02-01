@@ -2,27 +2,35 @@ package com.andricohalim.movieapps.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.andricohalim.movieapps.BuildConfig.IMAGE_URL
+import com.andricohalim.movieapps.MyApplication
 import com.andricohalim.movieapps.R
 import com.andricohalim.movieapps.core.domain.model.Movie
 import com.andricohalim.movieapps.core.ui.ViewModelFactory
 import com.andricohalim.movieapps.databinding.ActivityDetailMovieBinding
 import com.bumptech.glide.Glide
+import javax.inject.Inject
 
 class DetailMovieActivity : AppCompatActivity() {
 
-    private lateinit var detailViewModel: DetailMovieViewModel
+    @Inject
+    lateinit var factory: ViewModelFactory
+    private val detailViewModel: DetailMovieViewModel by viewModels {
+        factory
+    }
     private lateinit var binding: ActivityDetailMovieBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        (application as MyApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityDetailMovieBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val factory = ViewModelFactory.getInstance(this)
-        detailViewModel = ViewModelProvider(this, factory)[DetailMovieViewModel::class.java]
+//        val factory = ViewModelFactory.getInstance(this)
+//        detailViewModel = ViewModelProvider(this, factory)[DetailMovieViewModel::class.java]
 
         val detailMovie = intent.getParcelableExtra<Movie>(KEY_DETAIL)
         showDetailMovie(detailMovie)

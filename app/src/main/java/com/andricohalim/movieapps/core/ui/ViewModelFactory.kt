@@ -3,26 +3,16 @@ package com.andricohalim.movieapps.core.ui
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.andricohalim.movieapps.core.di.Injection
 import com.andricohalim.movieapps.core.domain.usecase.MovieUseCase
 import com.andricohalim.movieapps.detail.DetailMovieViewModel
+import com.andricohalim.movieapps.di.AppScope
 import com.andricohalim.movieapps.favorite.FavoriteViewModel
 import com.andricohalim.movieapps.home.HomeViewModel
+import javax.inject.Inject
 
-class ViewModelFactory private constructor(private val movieUseCase: MovieUseCase) :
+@AppScope
+class ViewModelFactory @Inject constructor(private val movieUseCase: MovieUseCase) :
     ViewModelProvider.NewInstanceFactory() {
-
-    companion object {
-        @Volatile
-        private var instance: ViewModelFactory? = null
-
-        fun getInstance(context: Context): ViewModelFactory =
-            instance ?: synchronized(this) {
-                instance ?: ViewModelFactory(
-                    Injection.provideMovieUseCase(context)
-                )
-            }
-    }
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T =
@@ -38,4 +28,16 @@ class ViewModelFactory private constructor(private val movieUseCase: MovieUseCas
             }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }
+
+//    companion object {
+//        @Volatile
+//        private var instance: ViewModelFactory? = null
+//
+//        fun getInstance(context: Context): ViewModelFactory =
+//            instance ?: synchronized(this) {
+//                instance ?: ViewModelFactory(
+//                    Injection.provideMovieUseCase(context)
+//                )
+//            }
+//    }
 }

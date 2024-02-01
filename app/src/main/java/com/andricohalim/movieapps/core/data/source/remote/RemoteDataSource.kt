@@ -14,17 +14,11 @@ import kotlinx.coroutines.flow.flowOn
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class RemoteDataSource private constructor(private val apiService: ApiService) {
-    companion object {
-        @Volatile
-        private var instance: RemoteDataSource? = null
-
-        fun getInstance(service: ApiService): RemoteDataSource =
-            instance ?: synchronized(this) {
-                instance ?: RemoteDataSource(service)
-            }
-    }
+@Singleton
+class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
 
     suspend fun getAllMovie(): Flow<ApiResponse<List<MovieResponse>>> {
         return flow {
@@ -42,5 +36,15 @@ class RemoteDataSource private constructor(private val apiService: ApiService) {
             }
         }.flowOn(Dispatchers.IO)
     }
+
+//    companion object {
+//        @Volatile
+//        private var instance: RemoteDataSource? = null
+//
+//        fun getInstance(service: ApiService): RemoteDataSource =
+//            instance ?: synchronized(this) {
+//                instance ?: RemoteDataSource(service)
+//            }
+//    }
 }
 
