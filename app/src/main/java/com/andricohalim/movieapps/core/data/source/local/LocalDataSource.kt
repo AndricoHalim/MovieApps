@@ -4,6 +4,7 @@ import android.graphics.Movie
 import androidx.lifecycle.LiveData
 import com.andricohalim.movieapps.core.data.source.local.entity.MovieEntity
 import com.andricohalim.movieapps.core.data.source.local.room.MovieDao
+import kotlinx.coroutines.flow.Flow
 
 class LocalDataSource private constructor(private val movieDao: MovieDao) {
 
@@ -16,11 +17,11 @@ class LocalDataSource private constructor(private val movieDao: MovieDao) {
             }
     }
 
-    fun getAllMovie(): LiveData<List<MovieEntity>> = movieDao.getAllMovie()
+    fun getAllMovie(): Flow<List<MovieEntity>> = movieDao.getAllMovie()
 
-    fun getFavoriteMovie(): LiveData<List<MovieEntity>> = movieDao.getFavoriteMovie()
+    fun getFavoriteMovie(): Flow<List<MovieEntity>> = movieDao.getFavoriteMovie()
 
-    fun insertMovie(movieList: List<MovieEntity>) = movieDao.insertMovie(movieList)
+    suspend fun insertMovie(movieList: List<MovieEntity>) = movieDao.insertMovie(movieList)
 
     fun setFavoriteMovie(movie: MovieEntity, newState: Boolean) {
         movie.isFavorite = newState
