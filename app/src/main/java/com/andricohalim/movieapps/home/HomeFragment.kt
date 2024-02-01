@@ -11,28 +11,21 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andricohalim.movieapps.MyApplication
+import com.andricohalim.movieapps.R
 import com.andricohalim.movieapps.core.data.Resource
 import com.andricohalim.movieapps.core.ui.MovieAdapter
-import com.andricohalim.movieapps.core.ui.ViewModelFactory
 import com.andricohalim.movieapps.databinding.FragmentHomeBinding
 import com.andricohalim.movieapps.detail.DetailMovieActivity
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-    @Inject
-    lateinit var factory: ViewModelFactory
+    private val homeViewModel: HomeViewModel by viewModels()
 
-    private val homeViewModel: HomeViewModel by viewModels {
-        factory
-    }
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        (requireActivity().application as MyApplication).appComponent.inject(this)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -66,6 +59,9 @@ class HomeFragment : Fragment() {
 
                         is Resource.Error -> {
                             binding.progressBar.visibility = View.GONE
+                            binding.viewEmpty.root.visibility = View.VISIBLE
+                            binding.viewEmpty.tvError.text =
+                                movie.message ?: getString(R.string.something_wrong)
                         }
                     }
                 }

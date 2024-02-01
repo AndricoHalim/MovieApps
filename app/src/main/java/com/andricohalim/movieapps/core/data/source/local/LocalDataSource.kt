@@ -21,13 +21,4 @@ class LocalDataSource @Inject constructor(private val movieDao: MovieDao) {
         movie.isFavorite = newState
         movieDao.updateFavoriteMovie(movie)
     }
-
-//    companion object {
-//        private var instance: LocalDataSource? = null
-//
-//        fun getInstance(movieDao: MovieDao): LocalDataSource =
-//            instance ?: synchronized(this) {
-//                instance ?: LocalDataSource(movieDao)
-//            }
-//    }
 }

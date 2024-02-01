@@ -9,22 +9,18 @@ import com.andricohalim.movieapps.BuildConfig.IMAGE_URL
 import com.andricohalim.movieapps.MyApplication
 import com.andricohalim.movieapps.R
 import com.andricohalim.movieapps.core.domain.model.Movie
-import com.andricohalim.movieapps.core.ui.ViewModelFactory
 import com.andricohalim.movieapps.databinding.ActivityDetailMovieBinding
 import com.bumptech.glide.Glide
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class DetailMovieActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var factory: ViewModelFactory
-    private val detailViewModel: DetailMovieViewModel by viewModels {
-        factory
-    }
+    private val detailViewModel: DetailMovieViewModel by viewModels()
     private lateinit var binding: ActivityDetailMovieBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as MyApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityDetailMovieBinding.inflate(layoutInflater)
         setContentView(binding.root)

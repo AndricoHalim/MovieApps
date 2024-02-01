@@ -31,8 +31,8 @@ class MovieRepository @Inject constructor(
             }
 
             override fun shouldFetch(data: List<Movie>?): Boolean =
-//                data == null || data.isEmpty()
-                false // ganti dengan true jika ingin selalu mengambil data dari internet
+                data.isNullOrEmpty()
+//                true // ganti dengan true jika ingin selalu mengambil data dari internet
 
             override suspend fun createCall(): Flow<ApiResponse<List<MovieResponse>>> =
                 remoteDataSource.getAllMovie()
@@ -53,18 +53,4 @@ class MovieRepository @Inject constructor(
         val movieEntity = DataMapper.mapDomainToEntity(movie)
         appExecutors.diskIO().execute { localDataSource.setFavoriteMovie(movieEntity, state) }
     }
-
-//    companion object {
-//        @Volatile
-//        private var instance: MovieRepository? = null
-//
-//        fun getInstance(
-//            remoteData: RemoteDataSource,
-//            localData: LocalDataSource,
-//            appExecutors: AppExecutors
-//        ): MovieRepository =
-//            instance ?: synchronized(this) {
-//                instance ?: MovieRepository(remoteData, localData, appExecutors)
-//            }
-//    }
 }
