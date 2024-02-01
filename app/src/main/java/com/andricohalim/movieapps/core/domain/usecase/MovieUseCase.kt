@@ -1,6 +1,5 @@
 package com.andricohalim.movieapps.core.domain.usecase
 
-import androidx.lifecycle.LiveData
 import com.andricohalim.movieapps.core.data.Resource
 import com.andricohalim.movieapps.core.domain.model.Movie
 import kotlinx.coroutines.flow.Flow

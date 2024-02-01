@@ -1,18 +1,15 @@
 package com.andricohalim.movieapps.detail
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
 import com.andricohalim.movieapps.BuildConfig.IMAGE_URL
-import com.andricohalim.movieapps.MyApplication
 import com.andricohalim.movieapps.R
 import com.andricohalim.movieapps.core.domain.model.Movie
 import com.andricohalim.movieapps.databinding.ActivityDetailMovieBinding
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class DetailMovieActivity : AppCompatActivity() {

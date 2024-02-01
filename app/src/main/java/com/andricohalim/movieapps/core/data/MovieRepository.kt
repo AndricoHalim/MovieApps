@@ -1,7 +1,5 @@
 package com.andricohalim.movieapps.core.data
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.map
 import com.andricohalim.movieapps.core.data.source.local.LocalDataSource
 import com.andricohalim.movieapps.core.data.source.remote.RemoteDataSource
 import com.andricohalim.movieapps.core.data.source.remote.network.ApiResponse

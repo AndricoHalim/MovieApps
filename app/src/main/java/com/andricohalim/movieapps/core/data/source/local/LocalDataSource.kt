@@ -1,7 +1,5 @@
 package com.andricohalim.movieapps.core.data.source.local
 
-import android.graphics.Movie
-import androidx.lifecycle.LiveData
 import com.andricohalim.movieapps.core.data.source.local.entity.MovieEntity
 import com.andricohalim.movieapps.core.data.source.local.room.MovieDao
 import kotlinx.coroutines.flow.Flow
