@@ -1,6 +1,6 @@
 package com.andricohalim.movieapps.core.di
 
-import com.andricohalim.movieapps.BuildConfig
+import com.andricohalim.movieapps.core.BuildConfig
 import com.andricohalim.movieapps.core.data.source.remote.network.ApiService
 import dagger.Module
 import dagger.Provides

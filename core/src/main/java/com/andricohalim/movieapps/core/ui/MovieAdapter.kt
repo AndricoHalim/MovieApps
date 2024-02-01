@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.andricohalim.movieapps.BuildConfig.IMAGE_URL
-import com.andricohalim.movieapps.R
+import com.andricohalim.movieapps.core.BuildConfig.IMAGE_URL
+import com.andricohalim.movieapps.core.R
+import com.andricohalim.movieapps.core.databinding.MovieItemBinding
 import com.andricohalim.movieapps.core.domain.model.Movie
-import com.andricohalim.movieapps.databinding.MovieItemBinding
 import com.bumptech.glide.Glide
 import java.util.ArrayList
 
