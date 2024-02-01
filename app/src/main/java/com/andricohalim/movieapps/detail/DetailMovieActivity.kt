@@ -29,9 +29,6 @@ class DetailMovieActivity : AppCompatActivity() {
         binding = ActivityDetailMovieBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        val factory = ViewModelFactory.getInstance(this)
-//        detailViewModel = ViewModelProvider(this, factory)[DetailMovieViewModel::class.java]
-
         val detailMovie = intent.getParcelableExtra<Movie>(KEY_DETAIL)
         showDetailMovie(detailMovie)
     }
@@ -39,22 +36,24 @@ class DetailMovieActivity : AppCompatActivity() {
     private fun showDetailMovie(detailMovie: Movie?) {
         detailMovie?.let {
             supportActionBar?.title = detailMovie.title
-            Glide.with(this@DetailMovieActivity)
-                .load(IMAGE_URL + detailMovie.backdropPath)
-                .into(binding.ivBackgroundMove)
-            Glide.with(this@DetailMovieActivity)
-                .load(IMAGE_URL + detailMovie.posterPath)
-                .into(binding.ivMovie)
-            binding.tvMovieName.text = detailMovie.title
-            binding.tvMovieRelease.text= detailMovie.releaseDate
-            binding.tvMovieOverview.text = detailMovie.overview
+            binding.apply {
+                Glide.with(this@DetailMovieActivity)
+                    .load(IMAGE_URL + detailMovie.backdropPath)
+                    .into(ivBackgroundMove)
+                Glide.with(this@DetailMovieActivity)
+                    .load(IMAGE_URL + detailMovie.posterPath)
+                    .into(ivMovie)
+                tvMovieName.text = detailMovie.title
+                tvMovieRelease.text= detailMovie.releaseDate
+                tvMovieOverview.text = detailMovie.overview
 
-            var statusFavorite = detailMovie.isFavorite
-            setStatusFavorite(statusFavorite)
-            binding.btnFavorite.setOnClickListener {
-                statusFavorite = !statusFavorite
-                detailViewModel.setFavoriteMovie(detailMovie, statusFavorite)
+                var statusFavorite = detailMovie.isFavorite
                 setStatusFavorite(statusFavorite)
+                btnFavorite.setOnClickListener {
+                    statusFavorite = !statusFavorite
+                    detailViewModel.setFavoriteMovie(detailMovie, statusFavorite)
+                    setStatusFavorite(statusFavorite)
+                }
             }
         }
     }

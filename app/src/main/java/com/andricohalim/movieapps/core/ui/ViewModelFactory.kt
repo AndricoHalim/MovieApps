@@ -8,36 +8,19 @@ import com.andricohalim.movieapps.detail.DetailMovieViewModel
 import com.andricohalim.movieapps.di.AppScope
 import com.andricohalim.movieapps.favorite.FavoriteViewModel
 import com.andricohalim.movieapps.home.HomeViewModel
+import java.lang.IllegalArgumentException
 import javax.inject.Inject
+import javax.inject.Provider
 
 @AppScope
-class ViewModelFactory @Inject constructor(private val movieUseCase: MovieUseCase) :
-    ViewModelProvider.NewInstanceFactory() {
-
+class ViewModelFactory @Inject constructor(
+    private val creators : Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>
+) : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T =
-        when {
-            modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
-                HomeViewModel(movieUseCase) as T
-            }
-            modelClass.isAssignableFrom(DetailMovieViewModel::class.java) -> {
-                DetailMovieViewModel(movieUseCase) as T
-            }
-            modelClass.isAssignableFrom(FavoriteViewModel::class.java) -> {
-                FavoriteViewModel(movieUseCase) as T
-            }
-            else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
-        }
-
-//    companion object {
-//        @Volatile
-//        private var instance: ViewModelFactory? = null
-//
-//        fun getInstance(context: Context): ViewModelFactory =
-//            instance ?: synchronized(this) {
-//                instance ?: ViewModelFactory(
-//                    Injection.provideMovieUseCase(context)
-//                )
-//            }
-//    }
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        val creator = creators[modelClass]?: creators.entries.firstOrNull{
+            modelClass.isAssignableFrom(it.key)
+        }?.value ?: throw IllegalArgumentException("unknown model class $modelClass")
+        return creator.get() as T
+    }
 }

@@ -55,9 +55,6 @@ class HomeFragment : Fragment() {
                 startActivity(detailIntent)
             }
 
-//            val factory = ViewModelFactory.getInstance(requireActivity())
-//            homeViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
-
             homeViewModel.movie.observe(viewLifecycleOwner) { movie ->
                 if (movie != null) {
                     when (movie) {

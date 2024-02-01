@@ -54,9 +54,6 @@ class FavoriteFragment : Fragment() {
                 startActivity(intent)
             }
 
-//            val factory = ViewModelFactory.getInstance(requireActivity())
-//            favoriteViewModel = ViewModelProvider(this, factory)[FavoriteViewModel::class.java]
-
             favoriteViewModel.favoriteMovie.observe(viewLifecycleOwner) { dataMovie ->
                 movieAdapter.setData(dataMovie)
                 binding.viewEmpty.root.visibility = if (dataMovie.isNotEmpty()) View.GONE else View.VISIBLE
