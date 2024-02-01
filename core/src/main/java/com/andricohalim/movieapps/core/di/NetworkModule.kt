@@ -22,7 +22,7 @@ class NetworkModule {
             .addInterceptor { chain ->
                 val original = chain.request()
                 val requestBuilder = original.newBuilder()
-                    .header("Authorization", "Bearer ${BuildConfig.API_KEY}") // Add the Authorization header with Bearer token
+                    .header("Authorization", "Bearer ${BuildConfig.API_KEY}")
                 val request = requestBuilder.build()
                 chain.proceed(request)
             }
