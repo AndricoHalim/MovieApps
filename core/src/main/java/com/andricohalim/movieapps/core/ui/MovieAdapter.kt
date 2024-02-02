@@ -41,6 +41,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ListViewHolder>() {
                     .load(IMAGE_URL + data.posterPath)
                     .into(ivMovie)
                 tvMovieName.text = data.title
+                tvPopularity.text = "Popularity = ${data.popularity}"
             }
         }
 

@@ -38,7 +38,6 @@
         android:layout_marginEnd="8dp"
         android:maxLines="4"
         android:text="@string/movie_title"
-        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/btn_favorite"
@@ -54,7 +53,6 @@
         android:textStyle="bold"
         android:layout_marginTop="8dp"
         android:layout_marginStart="16dp"
-        android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/iv_movie"
         app:layout_constraintTop_toBottomOf="@+id/tv_movieName" />
 
@@ -65,7 +63,6 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
         android:text="@string/date"
-        android:textColor="@color/black"
         app:layout_constraintEnd_toStartOf="@+id/btn_favorite"
         app:layout_constraintStart_toEndOf="@+id/iv_movie"
         app:layout_constraintTop_toBottomOf="@+id/tv_release" />
@@ -79,7 +76,6 @@
         android:text="@string/tvoverview"
         android:textStyle="bold"
         android:textSize="16sp"
-        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_movie" />
 
@@ -92,7 +88,6 @@
         android:layout_marginEnd="16dp"
         android:maxLines="10"
         android:text="@string/overview"
-        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />

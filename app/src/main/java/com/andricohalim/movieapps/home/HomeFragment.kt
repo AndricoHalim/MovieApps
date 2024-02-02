@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.andricohalim.movieapps.R
 import com.andricohalim.movieapps.core.data.Resource
 import com.andricohalim.movieapps.core.ui.MovieAdapter
 import com.andricohalim.movieapps.databinding.FragmentHomeBinding
@@ -55,9 +54,7 @@ class HomeFragment : Fragment() {
 
                         is Resource.Error -> {
                             binding.progressBar.visibility = View.GONE
-                            binding.viewEmpty.root.visibility = View.VISIBLE
-                            binding.viewEmpty.tvError.text =
-                                movie.message ?: getString(R.string.something_wrong)
+                            binding.tvError.visibility = View.VISIBLE
                         }
                     }
                 }

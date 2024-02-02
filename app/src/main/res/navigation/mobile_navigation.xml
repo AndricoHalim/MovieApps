@@ -11,14 +11,14 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.andricohalim.movieapps.search.SearchFragment"
-        android:label="@string/title_search"
-        tools:layout="@layout/fragment_search" />
-
-    <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.andricohalim.movieapps.favorite.FavoriteFragment"
         android:label="@string/title_favorite"
         tools:layout="@layout/fragment_favorite" />
+
+    <fragment
+        android:id="@+id/navigation_setting"
+        android:name="com.andricohalim.movieapps.settings.SettingsFragment"
+        android:label="@string/title_about"
+        tools:layout="@layout/fragment_setting" />
 </navigation>
