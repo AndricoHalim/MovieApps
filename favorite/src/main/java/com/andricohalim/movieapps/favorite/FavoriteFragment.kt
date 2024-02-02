@@ -1,5 +1,6 @@
 package com.andricohalim.movieapps.favorite
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,14 +10,19 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andricohalim.movieapps.core.ui.MovieAdapter
-import com.andricohalim.movieapps.databinding.FragmentFavoriteBinding
 import com.andricohalim.movieapps.detail.DetailMovieActivity
-import dagger.hilt.android.AndroidEntryPoint
+import com.andricohalim.movieapps.di.FavoriteModuleDependencies
+import com.andricohalim.movieapps.favorite.databinding.FragmentFavoriteBinding
+import dagger.hilt.android.EntryPointAccessors
+import javax.inject.Inject
 
-@AndroidEntryPoint
 class FavoriteFragment : Fragment() {
 
-    private val favoriteViewModel: FavoriteViewModel by viewModels()
+    @Inject
+    lateinit var factory: ViewModelFactory
+    private val favoriteViewModel: FavoriteViewModel by viewModels{
+        factory
+    }
     private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
 
@@ -27,6 +33,18 @@ class FavoriteFragment : Fragment() {
     ): View {
         _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onAttach(context: Context) {
+        DaggerFavoriteComponent.builder()
+            .context(requireActivity())
+            .appDependencies(
+                EntryPointAccessors.fromApplication(
+                    requireActivity().applicationContext,
+                    FavoriteModuleDependencies::class.java
+                )
+            ).build().inject(this)
+        super.onAttach(context)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,7 +61,7 @@ class FavoriteFragment : Fragment() {
 
             favoriteViewModel.favoriteMovie.observe(viewLifecycleOwner) { dataMovie ->
                 movieAdapter.setData(dataMovie)
-                binding.viewEmpty.root.visibility = if (dataMovie.isNotEmpty()) View.GONE else View.VISIBLE
+                binding.tvEmpty.visibility = if (dataMovie.isNotEmpty()) View.GONE else View.VISIBLE
             }
 
             with(binding.rvMovie) {
