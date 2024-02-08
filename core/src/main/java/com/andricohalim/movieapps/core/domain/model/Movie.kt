@@ -14,5 +14,5 @@ data class Movie(
     val releaseDate: String,
     val popularity: String,
     val id: Int,
-    val isFavorite: Boolean,
+    val isFavorite: Boolean
 ) : Parcelable

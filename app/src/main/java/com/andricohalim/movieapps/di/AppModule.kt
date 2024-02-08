@@ -5,7 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import com.andricohalim.movieapps.core.domain.usecase.MovieInteractor
 import com.andricohalim.movieapps.core.domain.usecase.MovieUseCase
-import com.andricohalim.movieapps.settings.dataStore
+import com.andricohalim.movieapps.core.utils.dataStore
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

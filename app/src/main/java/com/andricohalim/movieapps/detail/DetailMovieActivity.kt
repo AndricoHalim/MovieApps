@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.content.IntentCompat
 import com.andricohalim.movieapps.BuildConfig.IMAGE_URL
 import com.andricohalim.movieapps.R
 import com.andricohalim.movieapps.core.domain.model.Movie
@@ -22,11 +23,11 @@ class DetailMovieActivity : AppCompatActivity() {
         binding = ActivityDetailMovieBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val detailMovie = intent.getParcelableExtra<Movie>(KEY_DETAIL)
-        showDetailMovie(detailMovie)
+        showDetailMovie()
     }
 
-    private fun showDetailMovie(detailMovie: Movie?) {
+    private fun showDetailMovie() {
+        val detailMovie = IntentCompat.getParcelableExtra(intent, KEY_DETAIL, Movie::class.java)
         detailMovie?.let {
             supportActionBar?.title = detailMovie.title
             binding.apply {

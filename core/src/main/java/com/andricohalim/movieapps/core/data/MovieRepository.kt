@@ -17,7 +17,7 @@ import javax.inject.Singleton
 class MovieRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
-    private val appExecutors: AppExecutors
+    private val appExecutors: AppExecutors,
 ) : IMovieRepository {
 
     override fun getAllMovie(): Flow<Resource<List<Movie>>> =
@@ -50,4 +50,6 @@ class MovieRepository @Inject constructor(
         val movieEntity = DataMapper.mapDomainToEntity(movie)
         appExecutors.diskIO().execute { localDataSource.setFavoriteMovie(movieEntity, state) }
     }
+
+
 }
