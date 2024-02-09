@@ -57,4 +57,8 @@ dependencies {
     //coroutine
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+    //encrypt database
+    implementation ("net.zetetic:android-database-sqlcipher:4.5.3")
+    implementation ("androidx.sqlite:sqlite-ktx:2.4.0")
 }
