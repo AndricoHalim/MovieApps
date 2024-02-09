@@ -53,11 +53,12 @@ class DetailMovieActivity : AppCompatActivity() {
     }
 
     private fun setStatusFavorite(statusFavorite: Boolean) {
-        if (statusFavorite) {
-            binding.btnFavorite.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_bookmark_added_24))
+        val bookmarkIcon = if (statusFavorite) {
+            R.drawable.ic_bookmark_added_24
         } else {
-            binding.btnFavorite.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_bookmark_add_24))
+            R.drawable.ic_bookmark_add_24
         }
+        binding.btnFavorite.setImageDrawable(ContextCompat.getDrawable(this, bookmarkIcon))
     }
 
     companion object {

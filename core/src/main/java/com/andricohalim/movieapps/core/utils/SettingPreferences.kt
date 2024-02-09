@@ -18,8 +18,6 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "se
 class SettingPreferences @Inject constructor(private val dataStore: DataStore<Preferences>) :
     SettingUseCase {
 
-    private val THEME_KEY = booleanPreferencesKey("theme_setting")
-
     override fun getThemeSetting(): Flow<Boolean> {
         return dataStore.data.map { preferences ->
             preferences[THEME_KEY] ?: false
@@ -30,5 +28,9 @@ class SettingPreferences @Inject constructor(private val dataStore: DataStore<Pr
         dataStore.edit { preferences ->
             preferences[THEME_KEY] = isDarkModeActive
         }
+    }
+
+    companion object {
+        private val THEME_KEY = booleanPreferencesKey("theme_setting")
     }
 }
