@@ -46,15 +46,15 @@ class HomeFragment : Fragment() {
             homeViewModel.movie.observe(viewLifecycleOwner) { movie ->
                 if (movie != null) {
                     when (movie) {
-                        is Resource.Loading -> binding.progressBar.visibility = View.VISIBLE
+                        is Resource.Loading -> showLoading(true)
                         is Resource.Success -> {
-                            binding.progressBar.visibility = View.GONE
+                            showLoading(false)
                             movieAdapter.setData(movie.data)
                         }
 
                         is Resource.Error -> {
-                            binding.progressBar.visibility = View.GONE
-                            binding.tvError.visibility = View.VISIBLE
+                            showLoading(false)
+                            showError(true)
                         }
                     }
                 }
@@ -66,6 +66,15 @@ class HomeFragment : Fragment() {
                 adapter = movieAdapter
             }
         }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun showError(isLoading: Boolean) {
+        binding.lottieEmpty.visibility = if (isLoading) View.VISIBLE else View.GONE
+        binding.tvError.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     override fun onDestroyView() {
