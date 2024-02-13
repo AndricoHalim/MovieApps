@@ -55,4 +55,5 @@ android {
 
 dependencies {
     implementation(project(":core"))
+    implementation("androidx.annotation:annotation:1.7.1")
 }
