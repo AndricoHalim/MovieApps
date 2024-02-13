@@ -69,4 +69,5 @@ dependencies {
     implementation ("net.zetetic:android-database-sqlcipher:4.5.3")
     implementation ("androidx.sqlite:sqlite-ktx:2.4.0")
     implementation("androidx.annotation:annotation:1.7.1")
+    androidTestImplementation("androidx.annotation:annotation:1.7.1")
 }
