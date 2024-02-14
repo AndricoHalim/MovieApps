@@ -55,6 +55,6 @@ android {
 
 dependencies {
     implementation(project(":core"))
-    androidTestImplementation("androidx.annotation:annotation:1.7.1")
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation("androidx.annotation:annotation:1.7.1")
 }
