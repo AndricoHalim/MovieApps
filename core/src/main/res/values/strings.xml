@@ -1,5 +1,5 @@
 <resources>
     <string name="movie_image">Movie Image</string>
     <string name="movie_name">Movie Name</string>
-    <string name="popularity">Popularity</string>
+    <string name="popularity">Popularity = %1$s</string>
 </resources>

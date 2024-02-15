@@ -3,7 +3,6 @@
     <string name="title_popular">Now Playing</string>
     <string name="title_about">Setting</string>
     <string name="title_favorite">Favorite</string>
-    <string name="no_data_detected">No Data Detected</string>
     <string name="movie_image">Movie Image</string>
     <string name="movie_name">Movie Name</string>
     <string name="overview">overview</string>
@@ -17,5 +16,4 @@
     <string name="application_setting">Application Setting</string>
     <string name="dark_mode">Dark Mode</string>
     <string name="something_went_wrong">Something went wrong</string>
-    <string name="settings">Settings</string>
 </resources>

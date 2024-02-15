@@ -1,5 +1,6 @@
 package com.andricohalim.movieapps.core.ui
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ListViewHolder>() {
     private var listData = ArrayList<Movie>()
     var onItemClick: ((Movie) -> Unit)? = null
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setData(newListData: List<Movie>?) {
         if (newListData == null) return
         listData.clear()
@@ -41,7 +43,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ListViewHolder>() {
                     .load(IMAGE_URL + data.posterPath)
                     .into(ivMovie)
                 tvMovieName.text = data.title
-                tvPopularity.text = "Popularity = ${data.popularity}"
+                tvPopularity.text = root.context.getString(R.string.popularity, data.popularity)
             }
         }
 
